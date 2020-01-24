@@ -23,7 +23,7 @@ public class CupcakeClicker {
 	
 	void setup() {
 		
-		frame.getContentPane().setPreferredSize(new Dimension(w,h));
+		frame.getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		frame.show();
 		frame.add(panel);
 		frame.addKeyListener(panel);
