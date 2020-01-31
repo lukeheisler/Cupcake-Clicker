@@ -13,7 +13,6 @@ public class CupcakeClicker {
 	public static void main(String[] args) {
 		CupcakeClicker game = new CupcakeClicker();
 		game.setup();
-		
 	}
 	
 	CupcakeClicker() {

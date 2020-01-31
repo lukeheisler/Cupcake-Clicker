@@ -26,12 +26,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	
 	GamePanel() {
 		timer = new Timer(1000/60, this);
-		titleFont = new Font("Arial", Font.BOLD, 48);
-		subtitleFont = new Font("Arial", Font.PLAIN, 24);
+		titleFont = new Font("Comic Sans MS", Font.BOLD, 48);
+		subtitleFont = new Font("Comic Sans MS", Font.PLAIN, 24);
 	}
 	
 	void startGame() {
-			timer.start();
+		timer.start();
 	}
 		
 	void updateMenuState() {
@@ -47,16 +47,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 	
 	void drawMenuState(Graphics g) {
-		/*
-		g.setColor(Color.MAGENTA);
+		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, CupcakeClicker.WIDTH, CupcakeClicker.HEIGHT);
-		g.setColor(Color.BLUE);
+		g.setColor(Color.MAGENTA);
 		g.setFont(titleFont);
-		g.drawString("League Invaders", 60, 100);
+		int sw = g.getFontMetrics().stringWidth("Cupcake Clicker");
+		g.drawString("Cupcake Clicker", CupcakeClicker.WIDTH/2-sw/2, 100);
 		g.setFont(subtitleFont);
-		g.drawString("Please press ENTER to begin.", 80, 350);
-		g.drawString("Please press SPACE to view instructions.", 30, 500);
-		*/
+		sw = g.getFontMetrics().stringWidth("Press ENTER to begin.");
+		g.drawString("Press ENTER to begin.", 120, 350);
+		sw = g.getFontMetrics().stringWidth("For help, press SPACE.");
+		g.drawString("For help, press SPACE.", 115, 500);
 	}
 	
 	void drawGameState(Graphics g) {
@@ -67,17 +68,30 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 	
 	void drawHelpState(Graphics g) {
-		/*
 		g.setColor(Color.RED);
 		g.fillRect(0, 0, CupcakeClicker.WIDTH, CupcakeClicker.HEIGHT);
 		g.setColor(Color.BLACK);
-		*/
+		g.setFont(titleFont);
+		int sw = g.getFontMetrics().stringWidth("Help");
+		g.drawString("Help", CupcakeClicker.WIDTH/2-sw/2, 100);
+		g.setFont(subtitleFont);
+		sw = g.getFontMetrics().stringWidth("Welcome to Cupcake Clicker!");
+		g.drawString("Welcome to Cupcake Clicker!", CupcakeClicker.WIDTH/2-sw/2, 300);
 	}
 	
 	@Override
 	public void paintComponent(Graphics g){
-		g.setColor(Color.MAGENTA);
-		g.fillRect(10, 10, WIDTH/2, HEIGHT/2);
+		switch(currentState) {
+		case MENU_STATE:
+			drawMenuState(g);
+			break;
+		case GAME_STATE:
+			drawGameState(g);
+			break;
+		case HELP_STATE:
+			drawHelpState(g);
+			break;
+		}
 	}
 	
 	@Override
@@ -101,6 +115,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		switch(currentState) {
+		case MENU_STATE:
+			updateMenuState();
+			break;
+		case GAME_STATE:
+			updateGameState();
+			break;
+		case HELP_STATE:
+			updateHelpState();
+			break;
+	}
+	repaint();
 		repaint();
 	}
 
