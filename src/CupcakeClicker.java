@@ -5,8 +5,8 @@ import javax.swing.JFrame;
 public class CupcakeClicker {
 
 	//width and height variables
-	final static int WIDTH = 800;
-	final static int HEIGHT = 500;
+	final static int WIDTH = 500;
+	final static int HEIGHT = 800;
 	
 	//makes screen variables
 	JFrame frame;

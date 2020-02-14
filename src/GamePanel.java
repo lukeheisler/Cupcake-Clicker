@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -21,7 +23,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	final int HELP_STATE = 3;
 	int currentState = MENU_STATE;
 	
-	public static BufferedImage chocolateCupcakeImg;
+	//public static BufferedImage chocolateCupcakeImg;
+	public static ImageIcon chocolateCupcake;
 	
 	//make font variables
 	Font titleFont;
@@ -38,12 +41,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		titleFont = new Font("Comic Sans MS", Font.BOLD, 48);
 		subtitleFont = new Font("Comic Sans MS", Font.PLAIN, 24);
 		
+		chocolateCupcake = new ImageIcon("ChocolateCupcake.png");
+		
+		/*
 		try {
 			chocolateCupcakeImg = ImageIO.read(this.getClass().getResourceAsStream("ChocolateCupcake.png")); //initializes cupcake image
 		} 
 		catch (IOException e) {
             e.printStackTrace();
 		}
+		*/
 	}
 	
 	void startGame() {
@@ -73,12 +80,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.MAGENTA);
 		g.setFont(titleFont);
 		int sw = g.getFontMetrics().stringWidth("Cupcake Clicker");
-		g.drawString("Cupcake Clicker", CupcakeClicker.WIDTH/2-sw/2, 75);
+		g.drawString("Cupcake Clicker", CupcakeClicker.WIDTH/2-sw/2, 100);
 		g.setFont(subtitleFont);
 		sw = g.getFontMetrics().stringWidth("Press ENTER to begin.");
-		g.drawString("Press ENTER to begin.", CupcakeClicker.WIDTH/2-sw/2, 250);
+		g.drawString("Press ENTER to begin.", CupcakeClicker.WIDTH/2-sw/2, 300);
 		sw = g.getFontMetrics().stringWidth("For help, press SPACE.");
-		g.drawString("For help, press SPACE.", CupcakeClicker.WIDTH/2-sw/2, 350);
+		g.drawString("For help, press SPACE.", CupcakeClicker.WIDTH/2-sw/2, 400);
 	}
 	
 	void drawGameState(Graphics g) {
