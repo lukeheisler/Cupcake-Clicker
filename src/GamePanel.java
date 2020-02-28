@@ -17,14 +17,13 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	//make IDs for different game states
-	final int MENU_STATE = 0;
-	final int GAME_STATE = 1;
-	final int SHOP_STATE = 2;
-	final int HELP_STATE = 3;
-	int currentState = MENU_STATE;
+	final static int MENU_STATE = 0;
+	final static int GAME_STATE = 1;
+	final static int SHOP_STATE = 2;
+	final static int HELP_STATE = 3;
+	static int currentState = MENU_STATE;
 	
-	//public static BufferedImage chocolateCupcakeImg;
-	public static ImageIcon chocolateCupcake;
+	public static BufferedImage chocolateCupcakeImg;
 	
 	//make font variables
 	Font titleFont;
@@ -41,16 +40,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		titleFont = new Font("Comic Sans MS", Font.BOLD, 48);
 		subtitleFont = new Font("Comic Sans MS", Font.PLAIN, 24);
 		
-		chocolateCupcake = new ImageIcon("ChocolateCupcake.png");
-		
-		/*
 		try {
 			chocolateCupcakeImg = ImageIO.read(this.getClass().getResourceAsStream("ChocolateCupcake.png")); //initializes cupcake image
 		} 
 		catch (IOException e) {
             e.printStackTrace();
 		}
-		*/
 	}
 	
 	void startGame() {
