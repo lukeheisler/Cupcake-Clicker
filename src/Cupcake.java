@@ -1,10 +1,8 @@
 import java.awt.Graphics;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 
-public class Cupcake implements MouseListener {
+public class Cupcake {
 
 	int cupcakeType; //functionality to make different cupcake types later
 	
@@ -21,38 +19,4 @@ public class Cupcake implements MouseListener {
 		
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("owo");
-		if(GamePanel.currentState == GamePanel.GAME_STATE) {
-			System.out.println("uwu");
-		}
-		System.out.println();
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

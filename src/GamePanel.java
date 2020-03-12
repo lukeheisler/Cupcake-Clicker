@@ -34,6 +34,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer timer;
 	Cupcake cupcake = new Cupcake(0);
 	
+	private int cupcakeCount;
+	
 	GamePanel() {
 		timer = new Timer(1000/60, this); //starts timer
 		//set default fonts
@@ -88,6 +90,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, CupcakeClicker.WIDTH, CupcakeClicker.HEIGHT);
 		cupcake.draw(g); //draw cupcake
+		g.drawString("Cupcakes: " + cupcakeCount, 50, 100);
 	}
 	
 	void drawShopState(Graphics g) {
@@ -142,6 +145,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if(currentState == MENU_STATE) {
 				//if state is menuState
 				currentState = HELP_STATE; //set state to helpState
+			}
+			else if(currentState == GAME_STATE) {
+				//if state is gameState
+				cupcakeCount++;
 			}
 		}
 			
