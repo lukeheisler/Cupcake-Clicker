@@ -35,7 +35,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Timer timer;
 	Cupcake cupcake = new Cupcake(0);
 	
-	private int cupcakeCount;
+	private float cupcakeCount;
 	boolean keyDown = false;
 	int shopScroll = 0;
 	int confirmState = 0;
@@ -50,7 +50,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	private int item7Owned = 0;
 	
 	GamePanel() {
-		timer = new Timer(1000/60, this); //starts timer
+		timer = new Timer(1000/60, this); //initialize timer
 		//set default fonts
 		titleFont = new Font("Helvetica", Font.BOLD, 48);
 		subtitleFont = new Font("Helvetica", Font.PLAIN, 24);
@@ -66,22 +66,33 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	
 	void startGame() {
 		timer.start(); //starts timer
+		while(true) {
+			for(int i = 0; i< 10; i++) {
+			    try {
+			        Thread.sleep(1000);
+			    }
+			    catch(InterruptedException ie) {
+			    	
+			    }
+			    cupcakeCount += (item1Owned*10 + item2Owned*30 + item3Owned*75 + item4Owned*200 + item5Owned*400 + item6Owned*800 + item7Owned*10000) / 60.;
+			}
+		}
 	}
 		
 	void updateMenuState() {
-		//updates menuState
+		
 	}
 		
 	void updateGameState() {
-		//updates gameState
+		
 	}
 	
 	void updateShopState() {
-		//updates shopState
+		
 	}
 	
 	void updateHelpState() {
-		//updates helpState
+		
 	}
 	
 	void drawMenuState(Graphics g) {
@@ -106,11 +117,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		cupcake.draw(g); //draw cupcake
 		g.setColor(Color.MAGENTA);
 		g.setFont(subtitleFont);
-		g.drawString("Cupcakes: " + cupcakeCount, 25, 50);
+		g.drawString("Cupcakes: " + (int) cupcakeCount, 25, 50);
 		int sw = g.getFontMetrics().stringWidth("Press SPACE to get a cupcake.");
 		g.drawString("Press SPACE to get a cupcake.", CupcakeClicker.WIDTH/2-sw/2, 725);
 		sw = g.getFontMetrics().stringWidth("Press ENTER to go to the shop.");
 		g.drawString("Press ENTER to go to the shop.", CupcakeClicker.WIDTH/2-sw/2, 750);
+		
 	}
 	
 	void drawShopState(Graphics g) {
@@ -125,8 +137,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		
 		g.setColor(Color.ORANGE);
 		g.setFont(subtitleFont);
-		sw = g.getFontMetrics().stringWidth("You have " + cupcakeCount + " cupcakes.");
-		g.drawString("You have " + cupcakeCount + " cupcakes.", CupcakeClicker.WIDTH/2-sw/2, 110);
+		sw = g.getFontMetrics().stringWidth("You have " + (int) cupcakeCount + " cupcakes.");
+		g.drawString("You have " + (int) cupcakeCount + " cupcakes.", CupcakeClicker.WIDTH/2-sw/2, 110);
 		
 		//Faulty Cupcake Machine (1)
 		g.setColor(Color.MAGENTA);
@@ -134,8 +146,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Faulty Cupcake Machine", CupcakeClicker.WIDTH/2-sw/2, 150);
 		g.setColor(Color.CYAN);
 		g.setFont(infoFont);
-		sw = g.getFontMetrics().stringWidth("Costs 100 cupcakes, yields 10 cupcakes/min");
-		g.drawString("Costs 100 cupcakes, yields 10 cupcakes/min", CupcakeClicker.WIDTH/2-sw/2, 175);
+		sw = g.getFontMetrics().stringWidth("Costs 50 cupcakes, yields 10 cupcakes/min");
+		g.drawString("Costs 50 cupcakes, yields 10 cupcakes/min", CupcakeClicker.WIDTH/2-sw/2, 175);
 		sw = g.getFontMetrics().stringWidth("You own " + item1Owned);
 		g.drawString("You own " + item1Owned, CupcakeClicker.WIDTH/2-sw/2, 200);
 		
@@ -146,8 +158,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Underpaid Worker", CupcakeClicker.WIDTH/2-sw/2, 225);
 		g.setColor(Color.CYAN);
 		g.setFont(infoFont);
-		sw = g.getFontMetrics().stringWidth("Costs 250 cupcakes, yields 30 cupcakes/min");
-		g.drawString("Costs 250 cupcakes, yields 30 cupcakes/min", CupcakeClicker.WIDTH/2-sw/2, 250);
+		sw = g.getFontMetrics().stringWidth("Costs 125 cupcakes, yields 30 cupcakes/min");
+		g.drawString("Costs 125 cupcakes, yields 30 cupcakes/min", CupcakeClicker.WIDTH/2-sw/2, 250);
 		sw = g.getFontMetrics().stringWidth("You own " + item2Owned);
 		g.drawString("You own " + item2Owned, CupcakeClicker.WIDTH/2-sw/2, 275);
 		
@@ -158,8 +170,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Standard Worker", CupcakeClicker.WIDTH/2-sw/2, 300);
 		g.setColor(Color.CYAN);
 		g.setFont(infoFont);
-		sw = g.getFontMetrics().stringWidth("Costs 500 cupcakes, yields 75 cupcakes/min");
-		g.drawString("Costs 500 cupcakes, yields 75 cupcakes/min", CupcakeClicker.WIDTH/2-sw/2, 325);
+		sw = g.getFontMetrics().stringWidth("Costs 250 cupcakes, yields 75 cupcakes/min");
+		g.drawString("Costs 250 cupcakes, yields 75 cupcakes/min", CupcakeClicker.WIDTH/2-sw/2, 325);
 		sw = g.getFontMetrics().stringWidth("You own " + item3Owned);
 		g.drawString("You own " + item3Owned, CupcakeClicker.WIDTH/2-sw/2, 350);
 		
@@ -170,8 +182,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Standard Cupcake Machine", CupcakeClicker.WIDTH/2-sw/2, 375);
 		g.setColor(Color.CYAN);
 		g.setFont(infoFont);
-		sw = g.getFontMetrics().stringWidth("Costs 1000 cupcakes, yields 200 cupcakes/min");
-		g.drawString("Costs 1000 cupcakes, yields 200 cupcakes/min", CupcakeClicker.WIDTH/2-sw/2, 400);
+		sw = g.getFontMetrics().stringWidth("Costs 500 cupcakes, yields 200 cupcakes/min");
+		g.drawString("Costs 500 cupcakes, yields 200 cupcakes/min", CupcakeClicker.WIDTH/2-sw/2, 400);
 		sw = g.getFontMetrics().stringWidth("You own " + item4Owned);
 		g.drawString("You own " + item4Owned, CupcakeClicker.WIDTH/2-sw/2, 425);
 		
@@ -182,8 +194,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Speedy Worker", CupcakeClicker.WIDTH/2-sw/2, 450);
 		g.setColor(Color.CYAN);
 		g.setFont(infoFont);
-		sw = g.getFontMetrics().stringWidth("Costs 1500 cupcakes, yields 400 cupcakes/min");
-		g.drawString("Costs 1500 cupcakes, yields 400 cupcakes/min", CupcakeClicker.WIDTH/2-sw/2, 475);
+		sw = g.getFontMetrics().stringWidth("Costs 750 cupcakes, yields 400 cupcakes/min");
+		g.drawString("Costs 750 cupcakes, yields 400 cupcakes/min", CupcakeClicker.WIDTH/2-sw/2, 475);
 		sw = g.getFontMetrics().stringWidth("You own " + item5Owned);
 		g.drawString("You own " + item5Owned, CupcakeClicker.WIDTH/2-sw/2, 500);
 		
@@ -194,8 +206,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Deluxe Cupcake Machine", CupcakeClicker.WIDTH/2-sw/2, 525);
 		g.setColor(Color.CYAN);
 		g.setFont(infoFont);
-		sw = g.getFontMetrics().stringWidth("Costs 2500 cupcakes, yields 800 cupcakes/min");
-		g.drawString("Costs 2500 cupcakes, yields 800 cupcakes/min", CupcakeClicker.WIDTH/2-sw/2, 550);
+		sw = g.getFontMetrics().stringWidth("Costs 1250 cupcakes, yields 800 cupcakes/min");
+		g.drawString("Costs 1250 cupcakes, yields 800 cupcakes/min", CupcakeClicker.WIDTH/2-sw/2, 550);
 		sw = g.getFontMetrics().stringWidth("You own " + item6Owned);
 		g.drawString("You own " + item6Owned, CupcakeClicker.WIDTH/2-sw/2, 575);
 		
@@ -206,8 +218,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Nuclear Cupcake Reactor", CupcakeClicker.WIDTH/2-sw/2, 600);
 		g.setColor(Color.CYAN);
 		g.setFont(infoFont);
-		sw = g.getFontMetrics().stringWidth("Costs 50 000 cupcakes, yields 5000 cupcakes/min");
-		g.drawString("Costs 50 000 cupcakes, yields 10 000 cupcakes/min", CupcakeClicker.WIDTH/2-sw/2, 625);
+		sw = g.getFontMetrics().stringWidth("Costs 10 000 cupcakes, yields 5000 cupcakes/min");
+		g.drawString("Costs 10 000 cupcakes, yields 10 000 cupcakes/min", CupcakeClicker.WIDTH/2-sw/2, 625);
 		sw = g.getFontMetrics().stringWidth("You own " + item7Owned);
 		g.drawString("You own " + item7Owned, CupcakeClicker.WIDTH/2-sw/2, 650);
 		
@@ -219,6 +231,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			sw = g.getFontMetrics().stringWidth("Press ENTER to buy one of the selected item.");
 			g.drawString("Press ENTER to buy one of the selected item.", CupcakeClicker.WIDTH/2-sw/2, 725);
 			sw = g.getFontMetrics().stringWidth("Press BACKSPACE to leave the shop.");
+			g.setColor(Color.ORANGE);
 			g.drawString("Press BACKSPACE to leave the shop.", CupcakeClicker.WIDTH/2-sw/2, 750);
 			break;
 		case 1:
@@ -239,7 +252,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			g.drawString("Press ENTER to buy more items.", CupcakeClicker.WIDTH/2-sw/2, 750);
 			sw = g.getFontMetrics().stringWidth("Press BACKSPACE to leave the shop.");
 			g.drawString("Press BACKSPACE to leave the shop.", CupcakeClicker.WIDTH/2-sw/2, 775);
-			break;	
+			break;
+		case 3:
+			g.setColor(Color.RED);
+			sw = g.getFontMetrics().stringWidth("You don't have enough cupcakes!");
+			g.drawString("You don't have enough cupcakes!", CupcakeClicker.WIDTH/2-sw/2, 725);
+			g.setColor(Color.ORANGE);
+			sw = g.getFontMetrics().stringWidth("Press ENTER to continue.");
+			g.drawString("Press ENTER to continue.", CupcakeClicker.WIDTH/2-sw/2, 750);
+			break;
 		}
 		switch(shopScroll) {
 		case -1:
@@ -289,28 +310,76 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	void buyItem(int item) {
 		switch(item) {
 		case 1:
-			item1Owned++;
+			if(cupcakeCount >= 50) {
+				item1Owned++;
+				cupcakeCount -= 50;
+				confirmState++;
+			}
+			else {
+				confirmState += 2;
+			}
 			break;
 		case 2:
-			item2Owned++;
+			if(cupcakeCount >= 125) {
+				item2Owned++;
+				cupcakeCount -= 125;
+				confirmState++;
+			}
+			else {
+				confirmState += 2;
+			}
 			break;
 		case 3:
-			item3Owned++;
+			if(cupcakeCount >= 250) {
+				item3Owned++;
+				cupcakeCount -= 250;
+				confirmState++;
+			}
+			else {
+				confirmState += 2;
+			}
 			break;
 		case 4:
-			item4Owned++;
+			if(cupcakeCount >= 500) {
+				item4Owned++;
+				cupcakeCount -= 500;
+				confirmState++;
+			}
+			else {
+				confirmState += 2;
+			}
 			break;
 		case 5:
-			item5Owned++;
+			if(cupcakeCount >= 750) {
+				item5Owned++;
+				cupcakeCount -= 750;
+				confirmState++;
+			}
+			else {
+				confirmState += 2;
+			}
 			break;
 		case 6:
-			item6Owned++;
+			if(cupcakeCount >= 1250) {
+				item6Owned++;
+				cupcakeCount -= 1250;
+				confirmState++;
+			}
+			else {
+				confirmState += 2;
+			}
 			break;
 		case 7:
-			item7Owned++;
+			if(cupcakeCount >= 10000) {
+				item7Owned++;
+				cupcakeCount -= 10000;
+				confirmState++;
+			}
+			else {
+				confirmState += 2;
+			}
 			break;
 		}
-		confirmState++;
 	}
 	
 	@Override
@@ -357,6 +426,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 						buyItem(shopScroll);
 						break;
 					case 2:
+						confirmState = 0;
+						break;
+					case 3:
 						confirmState = 0;
 						break;
 					}
