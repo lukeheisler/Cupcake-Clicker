@@ -1,2 +1,2 @@
 # Cupcake-Clicker
-cup cake click click
+A stupid project I made.
